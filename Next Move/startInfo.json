@@ -1,0 +1,231 @@
+{
+  "locations": [
+
+    {
+      "id": 0,
+      "name": "San Francisco",
+      "latitude": 37.77,
+      "longitude": 122.41,
+      "url": "https.google.com",
+      "imageName": "san-fran",
+      "isPopular": true
+    },
+    {
+      "id": 1,
+      "name": "London",
+      "latitude": 51.50,
+      "longitude": 0.12,
+      "url": "https.google.com",
+      "imageName": "london",
+      "isPopular": true
+    },
+    {
+      "id": 2,
+      "name": "Toronto",
+      "latitude": 43.65,
+      "longitude": 79.38,
+      "url": "https.google.com",
+      "imageName": "toronto",
+      "isPopular": true
+    },
+    {
+      "id": 3,
+      "name": "Paris",
+      "latitude": 48.85,
+      "longitude": 2.35,
+      "url": "https.google.com",
+      "imageName": "paris",
+      "isPopular": true
+    },
+    {
+      "id": 4,
+      "name": "Tokyo",
+      "latitude": 35.67,
+      "longitude": 139.65,
+      "url": "https.google.com",
+      "imageName": "tokyo",
+      "isPopular": true
+    },
+    {
+      "id": 5,
+      "name": "New York",
+      "latitude": 40.71,
+      "longitude": 74.00,
+      "url": "https.google.com",
+      "imageName": "new-york",
+      "isPopular": true
+    },
+    {
+      "id": 6,
+      "name": "Sydney",
+      "latitude": 33.86,
+      "longitude": 151.20,
+      "url": "https.google.com",
+      "imageName": "sydney",
+      "isPopular": true
+    },
+    {
+      "id": 7,
+      "name": "Los Angeles",
+      "latitude": 34.05,
+      "longitude": 118.24,
+      "url": "https.google.com",
+      "imageName": "los-angeles",
+      "isPopular": true
+    },
+    {
+      "id": 8,
+      "name": "Toulouse",
+      "latitude": 43.60,
+      "longitude": 1.44,
+      "url": "https.google.com",
+      "imageName": "toulouse",
+      "isPopular": true
+    },
+    {
+      "id": 9,
+      "name": "Moscow",
+      "latitude": 55.75,
+      "longitude": 37.61,
+      "url": "https.google.com",
+      "imageName": "moscow",
+      "isPopular": true
+    },
+    {
+      "id": 10,
+      "name": "Amsterdam",
+      "latitude": 52.36,
+      "longitude": 4.90,
+      "url": "https.google.com",
+      "imageName": "amsterdam",
+      "isPopular": true
+    },
+    {
+      "id": 11,
+      "name": "Miami",
+      "latitude": 25.76,
+      "longitude": 80.19,
+      "url": "https.google.com",
+      "imageName": "miami",
+      "isPopular": true
+    },
+    {
+      "id": 12,
+      "name": "Singapour",
+      "latitude": 1.35,
+      "longitude": 103.81,
+      "url": "https.google.com",
+      "imageName": "singapour",
+      "isPopular": true
+    },
+    {
+      "id": 13,
+      "name": "Hong kong",
+      "latitude": 22.31,
+      "longitude": 114.16,
+      "url": "https.google.com",
+      "imageName": "hong",
+      "isPopular": false
+    },
+    {
+      "id": 14,
+      "name": "Johannesburg",
+      "latitude": 26.20,
+      "longitude": 28.04,
+      "url": "https.google.com",
+      "imageName": "johannesburg",
+      "isPopular": false
+    },
+    {
+      "id": 15,
+      "name": "Berlin",
+      "latitude": 52.52,
+      "longitude": 13.40,
+      "url": "https.google.com",
+      "imageName": "berlin",
+      "isPopular": false
+    },
+    {
+      "id": 16,
+      "name": "Mexico City",
+      "latitude": 19.43,
+      "longitude": 99.13,
+      "url": "https.google.com",
+      "imageName": "mexico",
+      "isPopular": false
+    },
+    {
+      "id": 17,
+      "name": "Buenos Aires",
+      "latitude": 34.60,
+      "longitude": 58.38,
+      "url": "https.google.com",
+      "imageName": "buenos",
+      "isPopular": false
+    },
+    {
+      "id": 18,
+      "name": "Bogotá",
+      "latitude": 4.71,
+      "longitude": 74.07,
+      "url": "https.google.com",
+      "imageName": "bogota",
+      "isPopular": false
+    },
+    {
+      "id": 19,
+      "name": "Rome",
+      "latitude": 41.90,
+      "longitude": 12.49,
+      "url": "https.google.com",
+      "imageName": "rome",
+      "isPopular": false
+    },
+    {
+      "id": 20,
+      "name": "Montréal",
+      "latitude": 45.50,
+      "longitude": 73.56,
+      "url": "https.google.com",
+      "imageName": "montreal",
+      "isPopular": false
+    },
+    {
+      "id": 21,
+      "name": "Nairobi",
+      "latitude": 1.29,
+      "longitude": 36.82,
+      "url": "https.google.com",
+      "imageName": "nairobi",
+      "isPopular": false
+    },
+    {
+      "id": 22,
+      "name": "Beijing",
+      "latitude": 39.90,
+      "longitude": 116.40,
+      "url": "https.google.com",
+      "imageName": "beijing",
+      "isPopular": false
+    },
+    {
+      "id": 23,
+      "name": "Bangkok",
+      "latitude": 13.75,
+      "longitude": 100.50,
+      "url": "https.google.com",
+      "imageName": "bangkok",
+      "isPopular": false
+    },
+    {
+      "id": 24,
+      "name": "Istanbul",
+      "latitude": 41.00,
+      "longitude": 28.97,
+      "url": "https.google.com",
+      "imageName": "istanbul",
+      "isPopular": false
+    }
+
+  ]
+}
