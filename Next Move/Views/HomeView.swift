@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
+    @ObservedObject private var viewModel: HomeViewViewModel = HomeViewViewModel()
     
     var body: some View {
         
