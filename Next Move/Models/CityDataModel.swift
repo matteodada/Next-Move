@@ -8,14 +8,14 @@
 import Foundation
 
 
-struct CityDataModel: Decodable {
+struct CityDataModel: Codable {
     
     let categories: [Categorie]
     let teleport_city_score: Double
     
 }
 
-struct Categorie: Decodable {
+struct Categorie: Codable {
     
     let name: String
     let score_out_of_10: Double

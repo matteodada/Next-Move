@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CompareView: View {
     
-    @State var comparedCity: String = "Pick a City"
+    @State var comparedCityName: String = "Pick a City"
+    @State var comparedCityName2: String = "Pick a City"
     
-    @State var comparedCity2: String = "Pick a City"
+    @ObservedObject private var homeViewViewModel: HomeViewViewModel = HomeViewViewModel()
     
+    @ObservedObject private var compareViewViewModel = CompareViewViewModel()
+    @ObservedObject private var compareViewViewModel2 = CompareViewViewModel2()
+    
+    @State var isPresentingModal = false
+    @State var isPresentingModal2 = false
     
     var body: some View {
         
@@ -30,25 +37,35 @@ struct CompareView: View {
                 
                 VStack {
                     
-                    Text("Compare")
+                    Text("Next Move")
+                        .font(.largeTitle)
+                        .foregroundColor(.customPurple)
+                        .fontWeight(.bold)
+                    
+                    
+                    Text("Comparator")
                         .font(.largeTitle)
                         .foregroundColor(.customPurple)
                         .fontWeight(.bold)
                     
                     ZStack {
                         
-                        Color.white
+                        Color(.systemBackground)
                         
                         HStack {
                             
-                            Button(action: { print("modal view to change city 1")}, label: {
+                            Button(action: { self.isPresentingModal.toggle()}, label: {
                                 
-                                Text(comparedCity)
+                                Text(comparedCityName)
                                     .font(.title)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.black)
                                 
                             })
+                            .sheet(isPresented: $isPresentingModal, content: {
+                                ModalCityChoice(viewModel: compareViewViewModel, isPresented: $isPresentingModal, cityPickedName: $comparedCityName)
+                            })
+                            
                             
                         }
                         
@@ -64,13 +81,16 @@ struct CompareView: View {
                         
                         HStack {
                             
-                            Button(action: { print("modal view to change city 2")}, label: {
+                            Button(action: { self.isPresentingModal2.toggle()}, label: {
                                 
-                                Text(comparedCity2)
+                                Text(comparedCityName2)
                                     .font(.title)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.black)
                                 
+                            })
+                            .sheet(isPresented: $isPresentingModal2, content: {
+                                ModalCityChoice2(viewModel: compareViewViewModel2, isPresented: $isPresentingModal2, cityPickedName2: $comparedCityName2)
                             })
                             
                         }
@@ -81,14 +101,10 @@ struct CompareView: View {
                     .frame(width: 250, height: 50)
                     .padding(EdgeInsets(top: 15.0, leading: 100, bottom: 30.0, trailing: 25.0))
                     
-                    
-                    
-                        
                     Text("City Score")
                         .font(.title)
                         .foregroundColor(.customPurple)
                         .fontWeight(.bold)
-                    
                     
                     HStack {
                         
@@ -98,7 +114,7 @@ struct CompareView: View {
                             
                             Color.white
                             
-                            Text("58.3")
+                            Text(String(compareViewViewModel.scoreData?.cityScore ?? 0.0))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                                 .foregroundColor(.red)
@@ -109,14 +125,13 @@ struct CompareView: View {
                         .frame(width: 150, height: 150)
                         .shadow(radius: 5)
                         
-                        
                         Spacer()
                         
                         ZStack {
                             
                             Color.white
                             
-                            Text("78.5")
+                            Text(String(compareViewViewModel2.scoreData?.cityScore ?? 0.0))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                                 .foregroundColor(.green)
@@ -127,39 +142,200 @@ struct CompareView: View {
                         .frame(width: 150, height: 150)
                         .shadow(radius: 5)
                         
-                          
                         Spacer()
 
                     }
                     .padding(.top)
                     .padding(.bottom)
                     
+                    BarViewList(viewModel: compareViewViewModel,
+                                viewModel2: compareViewViewModel2,
+                                
+                                housingScore: compareViewViewModel.housingScore,
+                                costOflivingScore: compareViewViewModel.costOflivingScore,
+                                startUpsScore: compareViewViewModel.startUpsScore,
+                                ventureCapitalScore: compareViewViewModel.ventureCapitalScore,
+                                travelConnectivityScore: compareViewViewModel.travelConnectivityScore,
+                                commuteScore: compareViewViewModel.commuteScore,
+                                businessFreedomScore: compareViewViewModel.businessFreedomScore,
+                                safetyScore: compareViewViewModel.safetyScore,
+                                healthcareScore: compareViewViewModel.healthcareScore,
+                                educationScore: compareViewViewModel.educationScore,
+                                
+                                housingScore2: compareViewViewModel2.housingScore,
+                                costOflivingScore2: compareViewViewModel2.costOflivingScore,
+                                startUpsScore2: compareViewViewModel2.startUpsScore,
+                                ventureCapitalScore2: compareViewViewModel2.ventureCapitalScore,
+                                travelConnectivityScore2: compareViewViewModel2.travelConnectivityScore,
+                                commuteScore2: compareViewViewModel2.commuteScore,
+                                businessFreedomScore2: compareViewViewModel2.businessFreedomScore,
+                                safetyScore2: compareViewViewModel2.safetyScore,
+                                healthcareScore2: compareViewViewModel2.healthcareScore,
+                                educationScore2: compareViewViewModel2.educationScore)
                     
-                    BarViewList()
-                    
-                    BarViewList2()
+                    BarViewList2(viewModel: compareViewViewModel,
+                                 viewModel2: compareViewViewModel2,
+                                 
+                                 environmentalQualityScore: compareViewViewModel.environmentalQualityScore,
+                                 economyScore: compareViewViewModel.economyScore,
+                                 taxationScore: compareViewViewModel.taxationScore,
+                                 internetAccessScore: compareViewViewModel.internetAccessScore,
+                                 cultureScore: compareViewViewModel.cultureScore,
+                                 toleranceScore: compareViewViewModel.toleranceScore,
+                                 outdoorsScore: compareViewViewModel.outdoorsScore,
+                                 
+                                 environmentalQualityScore2: compareViewViewModel2.environmentalQualityScore,
+                                 economyScore2: compareViewViewModel2.economyScore,
+                                 taxationScore2: compareViewViewModel2.taxationScore,
+                                 internetAccessScore2: compareViewViewModel2.internetAccessScore,
+                                 cultureScore2: compareViewViewModel2.cultureScore,
+                                 toleranceScore2: compareViewViewModel2.toleranceScore,
+                                 outdoorsScore2: compareViewViewModel2.outdoorsScore)
                 }
             }
         }
+        .onAppear(perform: {
+            homeViewViewModel.getStartInfo()
+        })
     }
 }
 
-struct BarViewList: View {
+
+
+struct ModalCityChoice: View {
+    
+    var viewModel: CompareViewViewModel
+    
+    @Binding var isPresented: Bool
+    @Binding var cityPickedName: String
     
     var body: some View {
         
-        VStack {
+        List(viewModel.locations) { location in
             
-            BarViewRow(title: "Housing")
-            BarViewRow(title: "Cost of Living")
-            BarViewRow(title: "Start-Ups")
-            BarViewRow(title: "Venture Capital")
-            BarViewRow(title: "Travel Connectivity")
-            BarViewRow(title: "Commute")
-            BarViewRow(title: "Business Freedom")
-            BarViewRow(title: "Safety")
-            BarViewRow(title: "Healthcare")
-            BarViewRow(title: "Education")
+            Button(action: {
+                    cityPickedName = location.name;
+                    self.isPresented = false;
+                    self.viewModel.getLocationData(url: location.url)},
+                   
+                   label: {
+                
+                Text(location.name)
+                    .font(.title)
+                
+            })
+            
+        }
+        .onAppear(perform: { viewModel.getLocations() })
+        
+    }
+}
+
+struct ModalCityChoice2: View {
+    
+    var viewModel: CompareViewViewModel2
+    
+    @Binding var isPresented: Bool
+    @Binding var cityPickedName2: String
+    
+    var body: some View {
+        
+        List(viewModel.locations) { location in
+            
+            Button(action: {
+                    cityPickedName2 = location.name;
+                    self.isPresented = false;
+                    self.viewModel.getLocationData(url: location.url)},
+                
+                   label: {
+                
+                Text(location.name)
+                    .font(.title)
+                
+            })
+            
+        }
+        .onAppear(perform: { viewModel.getLocations() })
+        
+    }
+}
+
+
+
+
+
+
+
+struct BarViewList: View {
+    
+    var viewModel: CompareViewViewModel
+    var viewModel2: CompareViewViewModel2
+    
+    var housingScore: Double
+    var costOflivingScore: Double
+    var startUpsScore: Double
+    var ventureCapitalScore: Double
+    var travelConnectivityScore: Double
+    var commuteScore: Double
+    var businessFreedomScore: Double
+    var safetyScore: Double
+    var healthcareScore: Double
+    var educationScore: Double
+    
+    var housingScore2: Double
+    var costOflivingScore2: Double
+    var startUpsScore2: Double
+    var ventureCapitalScore2: Double
+    var travelConnectivityScore2: Double
+    var commuteScore2: Double
+    var businessFreedomScore2: Double
+    var safetyScore2: Double
+    var healthcareScore2: Double
+    var educationScore2: Double
+
+    var body: some View {
+        
+        VStack {
+        
+            BarViewRow(title: "Housing",
+                       progress: housingScore,
+                       progress2: housingScore2)
+            
+            BarViewRow(title: "Cost Of Living",
+                       progress: costOflivingScore,
+                       progress2: costOflivingScore2)
+
+            BarViewRow(title: "StartUps",
+                       progress: startUpsScore,
+                       progress2: startUpsScore2)
+
+            BarViewRow(title: "Venture Capital",
+                       progress: ventureCapitalScore,
+                       progress2: ventureCapitalScore2)
+
+            BarViewRow(title: "Travel Connectivity",
+                       progress: travelConnectivityScore,
+                       progress2: travelConnectivityScore2)
+
+            BarViewRow(title: "Commute",
+                       progress: commuteScore,
+                       progress2: commuteScore2)
+
+            BarViewRow(title: "Business Freedom",
+                       progress: businessFreedomScore,
+                       progress2: businessFreedomScore2)
+
+            BarViewRow(title: "Safety",
+                       progress: safetyScore,
+                       progress2: safetyScore2)
+
+            BarViewRow(title: "Healthcare",
+                       progress: healthcareScore,
+                       progress2: healthcareScore2)
+
+            BarViewRow(title: "Education",
+                       progress: educationScore,
+                       progress2: educationScore2)
     
         }
     }
@@ -167,17 +343,57 @@ struct BarViewList: View {
 
 struct BarViewList2: View {
     
+    var viewModel: CompareViewViewModel
+    var viewModel2: CompareViewViewModel2
+    
+    var environmentalQualityScore: Double
+    var economyScore: Double
+    var taxationScore: Double
+    var internetAccessScore: Double
+    var cultureScore: Double
+    var toleranceScore: Double
+    var outdoorsScore: Double
+    
+    var environmentalQualityScore2: Double
+    var economyScore2: Double
+    var taxationScore2: Double
+    var internetAccessScore2: Double
+    var cultureScore2: Double
+    var toleranceScore2: Double
+    var outdoorsScore2: Double
+    
+    
     var body: some View {
         
         VStack {
             
-            BarViewRow(title: "Environmental Quality")
-            BarViewRow(title: "Economy")
-            BarViewRow(title: "Taxation")
-            BarViewRow(title: "Internet Access")
-            BarViewRow(title: "Leisure & Culture")
-            BarViewRow(title: "Tolerance")
-            BarViewRow(title: "Outdoors")
+            BarViewRow(title: "Environmental Quality",
+                       progress: environmentalQualityScore,
+                       progress2: environmentalQualityScore2)
+
+            BarViewRow(title: "Economy",
+                       progress: economyScore,
+                       progress2: economyScore2)
+
+            BarViewRow(title: "Taxation",
+                       progress: taxationScore,
+                       progress2: taxationScore2)
+
+            BarViewRow(title: "Internet Access",
+                       progress: internetAccessScore,
+                       progress2: internetAccessScore2)
+
+            BarViewRow(title: "Culture & Leisure",
+                       progress: cultureScore,
+                       progress2: cultureScore2)
+
+            BarViewRow(title: "Tolerance",
+                       progress: toleranceScore,
+                       progress2: toleranceScore2)
+
+            BarViewRow(title: "Outdoors",
+                       progress: outdoorsScore,
+                       progress2: outdoorsScore2)
             
         }
     }
@@ -185,17 +401,15 @@ struct BarViewList2: View {
 }
     
 
-
 struct BarViewRow: View {
     
-    var title: String = ""
-    var progress: Int = 0
-    var progress2: Int = 0
+    var title: String
+    var progress: Double
+    var progress2: Double
     
     var body: some View {
         
         ZStack {
-            
             
             Color.customPurple
             
@@ -207,11 +421,10 @@ struct BarViewRow: View {
                     .fontWeight(.bold)
                     .padding(.top)
 
+                BarView(progress: progress, progress2: progress2)
                 
-                BarView()
-                
-                
-            }.padding(.bottom)
+            }
+            .padding(.bottom)
             
         }
         .cornerRadius(20)
@@ -224,12 +437,11 @@ struct BarViewRow: View {
 
 struct BarView: View {
     
-    var progress: Int = 45
-    var progress2: Int = 120
+    var progress: Double
+    var progress2: Double
     
     var body: some View {
-        
-
+    
         HStack {
             
             Spacer()
@@ -242,13 +454,13 @@ struct BarView: View {
                         .foregroundColor(.init(white: 0.8))
                         .frame(width: 50, height: 150)
                         .cornerRadius(12)
+                        .shadow(radius: 10)
                     
-                    Color.customCyanite.frame(width: 50, height: CGFloat(progress)).cornerRadius(12)
-                    
+                    Color.customCyanite.frame(width: 50, height: CGFloat(progress * 15)).cornerRadius(12)
                     
                 }
                 
-                Text("3.4")
+                Text(String(progress))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.customCyanite)
@@ -264,13 +476,13 @@ struct BarView: View {
                         .foregroundColor(.init(white: 0.8))
                         .frame(width: 50, height: 150)
                         .cornerRadius(12)
+                        .shadow(radius: 10)
                     
-                    Color.customCyanite.frame(width: 50, height: CGFloat(progress2)).cornerRadius(12)
-                    
+                    Color.customCyanite.frame(width: 50, height: CGFloat(progress2 * 15)).cornerRadius(12)
                     
                 }
                 
-                Text("8.2")
+                Text(String(progress2))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.customCyanite)
@@ -281,6 +493,9 @@ struct BarView: View {
         }
     }
 }
+
+
+
 
 
 

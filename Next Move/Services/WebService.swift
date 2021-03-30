@@ -10,14 +10,17 @@ import Combine
 
 class WebService {
     
-    func getData() -> AnyPublisher<CityDataModel, Error> {
+    func getData(url: String) -> AnyPublisher<CityDataModel, Error> {
         
-        guard let url = URL(string: "https://api.teleport.org/api/urban_areas/slug%3Aparis/scores/") else { fatalError("invalid url") }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.teleport.org"
+        components.path = "/api/urban_areas/slug%3A\(url)/scores/"
         
-        return URLSession.shared.dataTaskPublisher(for: url)
+        return URLSession.shared.dataTaskPublisher(for: components.url!)
+            .receive(on: RunLoop.main)
             .map(\.data)
             .decode(type: CityDataModel.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

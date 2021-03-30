@@ -6,7 +6,7 @@
       "name": "San Francisco",
       "latitude": 37.77,
       "longitude": -122.41,
-      "url": "https.google.com",
+      "url": "san-francisco-bay-area",
       "imageName": "san-fran",
       "isPopular": true
     },
@@ -15,7 +15,7 @@
       "name": "London",
       "latitude": 51.50,
       "longitude": 0.12,
-      "url": "https.google.com",
+      "url": "london",
       "imageName": "london",
       "isPopular": true
     },
@@ -24,7 +24,7 @@
       "name": "Toronto",
       "latitude": 43.65,
       "longitude": -79.38,
-      "url": "https.google.com",
+      "url": "toronto",
       "imageName": "toronto",
       "isPopular": true
     },
@@ -33,7 +33,7 @@
       "name": "Paris",
       "latitude": 48.85,
       "longitude": 2.35,
-      "url": "https.google.com",
+      "url": "paris",
       "imageName": "paris",
       "isPopular": true
     },
@@ -42,7 +42,7 @@
       "name": "Tokyo",
       "latitude": 35.67,
       "longitude": 139.65,
-      "url": "https.google.com",
+      "url": "tokyo",
       "imageName": "tokyo",
       "isPopular": true
     },
@@ -51,7 +51,7 @@
       "name": "New York",
       "latitude": 40.71,
       "longitude": -74.00,
-      "url": "https.google.com",
+      "url": "new-york",
       "imageName": "new-york",
       "isPopular": true
     },
@@ -60,7 +60,7 @@
       "name": "Sydney",
       "latitude": -33.86,
       "longitude": 151.20,
-      "url": "https.google.com",
+      "url": "sydney",
       "imageName": "sydney",
       "isPopular": true
     },
@@ -69,7 +69,7 @@
       "name": "Los Angeles",
       "latitude": 34.05,
       "longitude": -118.24,
-      "url": "https.google.com",
+      "url": "los-angeles",
       "imageName": "los-angeles",
       "isPopular": true
     },
@@ -78,7 +78,7 @@
       "name": "Toulouse",
       "latitude": 43.60,
       "longitude": 1.44,
-      "url": "https.google.com",
+      "url": "toulouse",
       "imageName": "toulouse",
       "isPopular": true
     },
@@ -87,7 +87,7 @@
       "name": "Moscow",
       "latitude": 55.75,
       "longitude": 37.61,
-      "url": "https.google.com",
+      "url": "moscow",
       "imageName": "moscow",
       "isPopular": true
     },
@@ -96,7 +96,7 @@
       "name": "Amsterdam",
       "latitude": 52.36,
       "longitude": 4.90,
-      "url": "https.google.com",
+      "url": "amsterdam",
       "imageName": "amsterdam",
       "isPopular": true
     },
@@ -105,7 +105,7 @@
       "name": "Miami",
       "latitude": 25.76,
       "longitude": -80.19,
-      "url": "https.google.com",
+      "url": "miami",
       "imageName": "miami",
       "isPopular": true
     },
@@ -114,7 +114,7 @@
       "name": "Singapour",
       "latitude": 1.35,
       "longitude": 103.81,
-      "url": "https.google.com",
+      "url": "singapore",
       "imageName": "singapour",
       "isPopular": true
     },
@@ -123,7 +123,7 @@
       "name": "Hong kong",
       "latitude": 22.31,
       "longitude": 114.16,
-      "url": "https.google.com",
+      "url": "hong-kong",
       "imageName": "hong",
       "isPopular": false
     },
@@ -132,7 +132,7 @@
       "name": "Johannesburg",
       "latitude": -26.20,
       "longitude": 28.04,
-      "url": "https.google.com",
+      "url": "johannesburg",
       "imageName": "johannesburg",
       "isPopular": false
     },
@@ -141,7 +141,7 @@
       "name": "Berlin",
       "latitude": 52.52,
       "longitude": 13.40,
-      "url": "https.google.com",
+      "url": "berlin",
       "imageName": "berlin",
       "isPopular": false
     },
@@ -150,7 +150,7 @@
       "name": "Mexico City",
       "latitude": 19.43,
       "longitude": -99.13,
-      "url": "https.google.com",
+      "url": "mexico-city",
       "imageName": "mexico",
       "isPopular": false
     },
@@ -159,7 +159,7 @@
       "name": "Buenos Aires",
       "latitude": -34.60,
       "longitude": -58.38,
-      "url": "https.google.com",
+      "url": "buenos-aires",
       "imageName": "buenos",
       "isPopular": false
     },
@@ -168,7 +168,7 @@
       "name": "Bogotá",
       "latitude": 4.71,
       "longitude": -74.07,
-      "url": "https.google.com",
+      "url": "bogota",
       "imageName": "bogota",
       "isPopular": false
     },
@@ -177,7 +177,7 @@
       "name": "Rome",
       "latitude": 41.90,
       "longitude": 12.49,
-      "url": "https.google.com",
+      "url": "rome",
       "imageName": "rome",
       "isPopular": false
     },
@@ -186,7 +186,7 @@
       "name": "Montréal",
       "latitude": 45.50,
       "longitude": -73.56,
-      "url": "https.google.com",
+      "url": "montreal",
       "imageName": "montreal",
       "isPopular": false
     },
@@ -195,7 +195,7 @@
       "name": "Nairobi",
       "latitude": 1.29,
       "longitude": 36.82,
-      "url": "https.google.com",
+      "url": "nairobi",
       "imageName": "nairobi",
       "isPopular": false
     },
@@ -204,7 +204,7 @@
       "name": "Beijing",
       "latitude": 39.90,
       "longitude": 116.40,
-      "url": "https.google.com",
+      "url": "beijing",
       "imageName": "beijing",
       "isPopular": false
     },
@@ -213,7 +213,7 @@
       "name": "Bangkok",
       "latitude": 13.75,
       "longitude": 100.50,
-      "url": "https.google.com",
+      "url": "bangkok",
       "imageName": "bangkok",
       "isPopular": false
     },
@@ -222,7 +222,7 @@
       "name": "Istanbul",
       "latitude": 41.00,
       "longitude": 28.97,
-      "url": "https.google.com",
+      "url": "istanbul",
       "imageName": "istanbul",
       "isPopular": false
     }

@@ -14,38 +14,42 @@ class CityDetailViewViewModel: ObservableObject {
     
     private let webService = WebService()
     
+    private let homeViewModel = HomeViewViewModel()
+    
     @Published var cityDataViewModel: CityDataViewModel?
     
     var cancellable: AnyCancellable?
-    
+        
     func getData() {
         
-        cancellable = webService.getData().sink(receiveCompletion: { _ in
+        cancellable = webService.getData(url: "this is warnign").sink(receiveCompletion: { _ in
             
         }, receiveValue: { cityDataModel in
             
             let receivedValue = CityDataViewModel(cityData: cityDataModel)
             
-            print(receivedValue.cityScore)
-            print(receivedValue.housingScore)
-            print(receivedValue.costOfLivingScore)
-            print(receivedValue.startUpsScore)
-            print(receivedValue.ventureCapitalScore)
-            print(receivedValue.travelConnectivityScore)
-            print(receivedValue.commuteScore)
-            print(receivedValue.businessFreedomScore)
-            print(receivedValue.safetyScore)
-            print(receivedValue.healthcareScore)
-            print(receivedValue.educationScore)
-            print(receivedValue.environmentalQualityScore)
-            print(receivedValue.economyScore)
-            print(receivedValue.taxationScore)
-            print(receivedValue.internetAccessScore)
-            print(receivedValue.cultureScore)
-            print(receivedValue.toleranceScore)
-            print(receivedValue.outdoorsScore)
+            
+//            print(receivedValue.cityScore)
+//            print(receivedValue.housingScore)
+//            print(receivedValue.costOfLivingScore)
+//            print(receivedValue.startUpsScore)
+//            print(receivedValue.ventureCapitalScore)
+//            print(receivedValue.travelConnectivityScore)
+//            print(receivedValue.commuteScore)
+//            print(receivedValue.businessFreedomScore)
+//            print(receivedValue.safetyScore)
+//            print(receivedValue.healthcareScore)
+//            print(receivedValue.educationScore)
+//            print(receivedValue.environmentalQualityScore)
+//            print(receivedValue.economyScore)
+//            print(receivedValue.taxationScore)
+//            print(receivedValue.internetAccessScore)
+//            print(receivedValue.cultureScore)
+//            print(receivedValue.toleranceScore)
+//            print(receivedValue.outdoorsScore)
         })
         
         
     }
+
 }

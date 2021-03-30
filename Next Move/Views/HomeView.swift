@@ -9,9 +9,24 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject private var viewModel: HomeViewViewModel = HomeViewViewModel()
+    @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     
     @ObservedObject var cityDetailViewViewModel: CityDetailViewViewModel = CityDetailViewViewModel()
+    
+    @State private var isModalPresented = false
+    
+    @State var selectedLocation: String = ""
+    @State var selectedImage: String = ""
+    @State var selectedLocationName: String = ""
+    
+    func assignName(location: Location) {
+        
+        selectedLocation = location.url
+        selectedImage = location.imageName
+        selectedLocationName = location.name
+        
+        self.isModalPresented.toggle()
+    }
     
     var body: some View {
         
@@ -19,7 +34,7 @@ struct HomeView: View {
             
           ZStack  {
              
-                Color.white
+            Color(.systemBackground)
                 
                 Circle()
                     .frame(width: 600, height: 700, alignment: .center)
@@ -86,8 +101,18 @@ struct HomeView: View {
                     VStack {
                         
                         ForEach(viewModel.popularLocations) { location in
-                            ItemRow(imageName: location.imageName, cityName: location.name)
+                            
+                            Button(action: { assignName(location: location) }, label: {
+                                
+                                ItemRow(imageName: location.imageName, cityName: location.name)
+                                
+                            })
+                            
+                           
+                            
                         }
+                        
+                        
                 
                         
                     }
@@ -102,7 +127,9 @@ struct HomeView: View {
             
         }
         .onAppear(perform: { viewModel.getStartInfo() })
-        .onAppear(perform: { cityDetailViewViewModel.getData() })
+        .sheet(isPresented: $isModalPresented, content: {
+            DetailView(locationUrl: $selectedLocation, imageName: $selectedImage, locationName: $selectedLocationName)
+        })
     }
 }
 
@@ -115,7 +142,7 @@ struct ItemRow: View {
         
         ZStack {
             
-            Color.white
+            Color(.systemBackground)
             
             HStack {
                 
@@ -149,9 +176,7 @@ struct ItemRow: View {
         }.cornerRadius(15)
         .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
         .shadow(radius: 10)
-        .onTapGesture {
-            print(cityName)
-        }
+        
         
     }
 }

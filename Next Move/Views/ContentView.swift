@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var selectedIndex: Int = 1
-    
+    @State private var selectedIndex: Int = 1
+        
     private let buttonImageNames = ["map", "house", "arrow.left.arrow.right"]
     
     var body: some View {
