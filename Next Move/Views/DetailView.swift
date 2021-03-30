@@ -40,7 +40,7 @@ struct DetailView: View {
                 
                 CityScoreView(cityScore: viewModel.scoreData?.cityScore  ?? 0.0)
                 
-                ScoreViewList(housingScore: viewModel.scoreData?.housingScore ?? 0.0,
+                ScoreViewList(housingScore: viewModel.housingScore,
                               costOfLivingScore: viewModel.scoreData?.costOfLivingScore ?? 0.0,
                               startUpsScore: viewModel.scoreData?.startUpsScore ?? 0.0,
                               ventureCapitalScore: viewModel.scoreData?.ventureCapitalScore ?? 0.0,

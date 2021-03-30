@@ -65,7 +65,7 @@ class CompareViewViewModel: ObservableObject {
             self.scoreData = newData
             
             self.housingScore = newData.housingScore
-            self.costOflivingScore = newData.housingScore
+            self.costOflivingScore = newData.costOfLivingScore
             self.startUpsScore = newData.startUpsScore
             self.ventureCapitalScore = newData.ventureCapitalScore
             self.travelConnectivityScore = newData.travelConnectivityScore

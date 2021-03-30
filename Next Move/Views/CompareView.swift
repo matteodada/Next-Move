@@ -148,10 +148,7 @@ struct CompareView: View {
                     .padding(.top)
                     .padding(.bottom)
                     
-                    BarViewList(viewModel: compareViewViewModel,
-                                viewModel2: compareViewViewModel2,
-                                
-                                housingScore: compareViewViewModel.housingScore,
+                    BarViewList(housingScore: compareViewViewModel.housingScore,
                                 costOflivingScore: compareViewViewModel.costOflivingScore,
                                 startUpsScore: compareViewViewModel.startUpsScore,
                                 ventureCapitalScore: compareViewViewModel.ventureCapitalScore,
@@ -173,10 +170,7 @@ struct CompareView: View {
                                 healthcareScore2: compareViewViewModel2.healthcareScore,
                                 educationScore2: compareViewViewModel2.educationScore)
                     
-                    BarViewList2(viewModel: compareViewViewModel,
-                                 viewModel2: compareViewViewModel2,
-                                 
-                                 environmentalQualityScore: compareViewViewModel.environmentalQualityScore,
+                    BarViewList2(environmentalQualityScore: compareViewViewModel.environmentalQualityScore,
                                  economyScore: compareViewViewModel.economyScore,
                                  taxationScore: compareViewViewModel.taxationScore,
                                  internetAccessScore: compareViewViewModel.internetAccessScore,
@@ -268,8 +262,6 @@ struct ModalCityChoice2: View {
 
 struct BarViewList: View {
     
-    var viewModel: CompareViewViewModel
-    var viewModel2: CompareViewViewModel2
     
     var housingScore: Double
     var costOflivingScore: Double
@@ -342,10 +334,7 @@ struct BarViewList: View {
 }
 
 struct BarViewList2: View {
-    
-    var viewModel: CompareViewViewModel
-    var viewModel2: CompareViewViewModel2
-    
+        
     var environmentalQualityScore: Double
     var economyScore: Double
     var taxationScore: Double
@@ -493,10 +482,6 @@ struct BarView: View {
         }
     }
 }
-
-
-
-
 
 
 

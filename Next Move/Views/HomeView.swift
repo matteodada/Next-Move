@@ -11,7 +11,7 @@ struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     
-    @ObservedObject var cityDetailViewViewModel: CityDetailViewViewModel = CityDetailViewViewModel()
+    //@ObservedObject var cityDetailViewViewModel: CityDetailViewViewModel = CityDetailViewViewModel()
     
     @State private var isModalPresented = false
     
