@@ -26,7 +26,7 @@ struct MapView: View {
                     
                     Image(systemName: "house.fill")
                         .font(.system(size: 25, weight: .bold))
-                        .foregroundColor(.orange)
+                        .foregroundColor(.customPurple)
 
                 })
             }

@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @ObservedObject private var viewModel: HomeViewViewModel = HomeViewViewModel()
     
+    @ObservedObject var cityDetailViewViewModel: CityDetailViewViewModel = CityDetailViewViewModel()
+    
     var body: some View {
         
         ScrollView {
@@ -20,7 +22,7 @@ struct HomeView: View {
                 Color.white
                 
                 Circle()
-                    .frame(width: 600, height: 700, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 600, height: 700, alignment: .center)
                     .foregroundColor(.init(white: 1.0))
                     .position(x: 60.0, y: -35.0)
                     .shadow(radius: 50)
@@ -32,7 +34,7 @@ struct HomeView: View {
                         Text("Find")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.orange)
+                            .foregroundColor(.customPurple)
                             .padding(EdgeInsets(top: 40, leading: 20, bottom: 5, trailing: 100))
 
                         
@@ -58,7 +60,7 @@ struct HomeView: View {
                         Text("Next Home")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .foregroundColor(.orange)
+                            .foregroundColor(.customPurple)
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 100))
 
                         
@@ -73,7 +75,7 @@ struct HomeView: View {
                         Text("Popular Destinations")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(.orange)
+                            .foregroundColor(.customPurple)
                             .padding(EdgeInsets(top: 95, leading: 20, bottom: 5, trailing: 10))
                             .lineLimit(1)
 
@@ -88,7 +90,8 @@ struct HomeView: View {
                         }
                 
                         
-                    }.padding(.top)
+                    }
+                    .padding(.top)
 
                     
                     Spacer()
@@ -97,7 +100,9 @@ struct HomeView: View {
                 
             }
             
-        }.onAppear(perform: { viewModel.getStartInfo() })
+        }
+        .onAppear(perform: { viewModel.getStartInfo() })
+        .onAppear(perform: { cityDetailViewViewModel.getData() })
     }
 }
 
@@ -136,7 +141,7 @@ struct ItemRow: View {
                     .resizable()
                     .frame(width: 30, height: 30)
                     .padding(.trailing, 20)
-                    .foregroundColor(.orange)
+                    .foregroundColor(.customPurple)
                 
 
             }

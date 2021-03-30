@@ -51,7 +51,7 @@ struct ContentView: View {
                         
                         Image(systemName: buttonImageNames[num])
                             .font(.system(size: 26, weight: .bold))
-                            .foregroundColor(selectedIndex == num ? .orange : .init(white: 0.8))
+                            .foregroundColor(selectedIndex == num ? .customPurple : .init(white: 0.8))
                         
                         Spacer()
                         
