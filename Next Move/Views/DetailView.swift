@@ -9,11 +9,13 @@ import SwiftUI
 
 struct DetailView: View {
     
+    
     @ObservedObject private var viewModel = CompareViewViewModel()
     
     @Binding var locationUrl: String
     @Binding var imageName: String
     @Binding var locationName: String
+    
     
     var body: some View {
         
@@ -21,10 +23,8 @@ struct DetailView: View {
             
             VStack {
                 
-                                    
                 Image(imageName)
                     .resizable()
-                    .ignoresSafeArea()
                     .aspectRatio(contentMode: .fill)
                     .shadow(color: .black, radius: 35)
                     .frame(width: UIScreen.main.bounds.width, height: 350, alignment: .center)
@@ -34,46 +34,45 @@ struct DetailView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.customPurple)
+                    .padding(.top)
+                    .padding(.bottom)
                     
-                
                 Spacer()
                 
                 CityScoreView(cityScore: viewModel.scoreData?.cityScore  ?? 0.0)
                 
                 ScoreViewList(housingScore: viewModel.housingScore,
-                              costOfLivingScore: viewModel.scoreData?.costOfLivingScore ?? 0.0,
-                              startUpsScore: viewModel.scoreData?.startUpsScore ?? 0.0,
-                              ventureCapitalScore: viewModel.scoreData?.ventureCapitalScore ?? 0.0,
-                              travelConnectivityScore: viewModel.scoreData?.travelConnectivityScore ?? 0.0,
-                              commuteScore: viewModel.scoreData?.commuteScore ?? 0.0,
-                              businessFreedomScore: viewModel.scoreData?.businessFreedomScore ?? 0.0,
-                              safetyScore: viewModel.scoreData?.safetyScore ?? 0.0,
-                              healthcareScore: viewModel.scoreData?.healthcareScore ?? 0.0,
-                              educationScore: viewModel.scoreData?.educationScore ?? 0.0)
+                              costOfLivingScore: viewModel.costOflivingScore,
+                              startUpsScore: viewModel.startUpsScore,
+                              ventureCapitalScore: viewModel.ventureCapitalScore,
+                              travelConnectivityScore: viewModel.travelConnectivityScore,
+                              commuteScore: viewModel.commuteScore,
+                              businessFreedomScore: viewModel.businessFreedomScore,
+                              safetyScore: viewModel.safetyScore,
+                              healthcareScore: viewModel.healthcareScore,
+                              educationScore: viewModel.educationScore)
                 
-                ScoreViewList2(environmentalQualityScore: viewModel.scoreData?.environmentalQualityScore ?? 0.0,
-                               economyScore: viewModel.scoreData?.economyScore ?? 0.0,
-                               taxationScore: viewModel.scoreData?.taxationScore ?? 0.0,
-                               internetAccessScore: viewModel.scoreData?.internetAccessScore ?? 0.0,
-                               cultureScore: viewModel.scoreData?.cultureScore ?? 0.0,
-                               toleranceScore: viewModel.scoreData?.toleranceScore ?? 0.0,
-                               outdoorsScore: viewModel.scoreData?.outdoorsScore ?? 0.0)
-                
-                
+                ScoreViewList2(environmentalQualityScore: viewModel.environmentalQualityScore,
+                               economyScore: viewModel.economyScore,
+                               taxationScore: viewModel.taxationScore,
+                               internetAccessScore: viewModel.internetAccessScore,
+                               cultureScore: viewModel.cultureScore,
+                               toleranceScore: viewModel.toleranceScore,
+                               outdoorsScore: viewModel.outdoorsScore)
             }
-            
         }
         .ignoresSafeArea()
         .onAppear(perform: { viewModel.getLocations() })
         .onAppear(perform: { viewModel.getLocationData(url: locationUrl) })
-        
     }
 }
 
 
 struct CityScoreView: View {
     
+    
     var cityScore: Double
+    
     
     var body: some View {
         
@@ -92,19 +91,18 @@ struct CityScoreView: View {
                     Text("City")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                        .foregroundColor(.customCyanite)
-                    
+                        .foregroundColor(.customWB)
                     
                     Text("Score")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                        .foregroundColor(.customCyanite)
+                        .foregroundColor(.customWB)
                     
                     Spacer()
                 }
                 
                 Spacer()
-                
+            
                 ZStack {
                     
                     Circle()
@@ -117,23 +115,28 @@ struct CityScoreView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.customCyanite)
+                    
                 }
                 .padding(.top, 25)
                 .padding(.bottom, 25)
                 
                 Spacer()
+                
             }
         }
         .cornerRadius(15)
-        .shadow(radius: 10)
+        .shadow(color: .black, radius: 10)
         .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
     }
 }
 
+
 struct ScoreView: View {
+    
     
     var categorieName: String
     var score: Double
+    
     
     var body: some View {
         
@@ -148,8 +151,9 @@ struct ScoreView: View {
                 Text(categorieName)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.customCyanite)
+                    .foregroundColor(.customWB)
                     .padding(.top)
+                    .padding(.bottom)
                 
                 Spacer()
                 
@@ -159,12 +163,14 @@ struct ScoreView: View {
                         .foregroundColor(.init(white: 0.8))
                         .frame(width: 300, height: 30)
                         .cornerRadius(12)
+                        .shadow(radius: 10)
                     
                     Color.customCyanite
                         .frame(width: CGFloat(score * 30), height: 30)
                         .cornerRadius(12)
                     
                 }
+                .padding(.bottom)
                 
                 Text(String(score))
                     .font(.title)
@@ -176,12 +182,14 @@ struct ScoreView: View {
             }
         }
         .cornerRadius(15)
-        .shadow(radius: 10)
+        .shadow(color: .black, radius: 10)
         .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
     }
 }
 
+
 struct ScoreViewList: View {
+    
     
     var housingScore: Double
     var costOfLivingScore: Double
@@ -193,6 +201,7 @@ struct ScoreViewList: View {
     var safetyScore: Double
     var healthcareScore: Double
     var educationScore: Double
+    
     
     var body: some View {
         
@@ -212,7 +221,9 @@ struct ScoreViewList: View {
     }
 }
 
+
 struct ScoreViewList2: View {
+    
     
     var environmentalQualityScore: Double
     var economyScore: Double
@@ -221,6 +232,7 @@ struct ScoreViewList2: View {
     var cultureScore: Double
     var toleranceScore: Double
     var outdoorsScore: Double
+    
     
     var body: some View {
         
@@ -233,17 +245,7 @@ struct ScoreViewList2: View {
             ScoreView(categorieName: "Leisure & Culture", score: cultureScore)
             ScoreView(categorieName: "Tolerance", score: toleranceScore)
             ScoreView(categorieName: "Outdoors", score: outdoorsScore)
-
         }
     }
 }
 
-
-//struct DetailView_Previews: PreviewProvider {
-//    
-//    @Binding var isPresented: Bool
-//    
-//    static var previews: some View {
-//        DetailView(locationUrl: "paris", imageName: "paris", locationName: "PARIS")
-//    }
-//}

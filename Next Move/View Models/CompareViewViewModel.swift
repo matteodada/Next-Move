@@ -11,9 +11,12 @@ import Combine
 
 class CompareViewViewModel: ObservableObject {
     
+    
     @Published var locations = [Location]()
     
     @Published var scoreData: CityDataViewModel?
+    
+    @Published var cityScore: Double = 0.0
     
     @Published var housingScore: Double = 0.0
     @Published var costOflivingScore: Double = 0.0
@@ -33,11 +36,10 @@ class CompareViewViewModel: ObservableObject {
     @Published var toleranceScore: Double = 0.0
     @Published var outdoorsScore: Double = 0.0
 
-    
-    
     let webService = WebService()
     
     var cancellable: AnyCancellable?
+    
     
     func getLocations() {
         
@@ -49,10 +51,10 @@ class CompareViewViewModel: ObservableObject {
                 if let startInfo = try? decoder.decode(StartInfo.self, from: data) {
                     
                     locations = startInfo.locations
-                    
                 }
             }
     }
+    
     
     func getLocationData(url: String) {
         
@@ -63,6 +65,8 @@ class CompareViewViewModel: ObservableObject {
             let newData = CityDataViewModel(cityData: cityDataModel)
             
             self.scoreData = newData
+            
+            self.cityScore = newData.cityScore
             
             self.housingScore = newData.housingScore
             self.costOflivingScore = newData.costOfLivingScore
@@ -81,9 +85,6 @@ class CompareViewViewModel: ObservableObject {
             self.cultureScore = newData.cultureScore
             self.toleranceScore = newData.toleranceScore
             self.outdoorsScore = newData.outdoorsScore
-        
         })
-        
     }
-    
 }

@@ -11,9 +11,12 @@ import Combine
 
 class CompareViewViewModel2: ObservableObject {
     
+    
     @Published var locations = [Location]()
     
     @Published var scoreData: CityDataViewModel?
+    
+    @Published var cityScore: Double = 0.0
     
     @Published var housingScore: Double = 0.0
     @Published var costOflivingScore: Double = 0.0
@@ -37,6 +40,7 @@ class CompareViewViewModel2: ObservableObject {
     
     var cancellable: AnyCancellable?
     
+    
     func getLocations() {
         
             if let url = Bundle.main.url(forResource: "startInfo", withExtension: "json"),
@@ -47,10 +51,10 @@ class CompareViewViewModel2: ObservableObject {
                 if let startInfo = try? decoder.decode(StartInfo.self, from: data) {
                     
                     locations = startInfo.locations
-                    
                 }
             }
     }
+    
     
     func getLocationData(url: String) {
         
@@ -61,6 +65,8 @@ class CompareViewViewModel2: ObservableObject {
             let newData = CityDataViewModel(cityData: cityDataModel)
             
             self.scoreData = newData
+            
+            self.cityScore = newData.cityScore
             
             self.housingScore = newData.housingScore
             self.costOflivingScore = newData.costOfLivingScore
@@ -79,9 +85,6 @@ class CompareViewViewModel2: ObservableObject {
             self.cultureScore = newData.cultureScore
             self.toleranceScore = newData.toleranceScore
             self.outdoorsScore = newData.outdoorsScore
-        
         })
-        
     }
-    
 }

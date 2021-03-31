@@ -17,7 +17,9 @@ class WebService {
         components.host = "api.teleport.org"
         components.path = "/api/urban_areas/slug%3A\(url)/scores/"
         
-        return URLSession.shared.dataTaskPublisher(for: components.url!)
+        guard let safeUrl = components.url else { fatalError("Invalid Url") }
+        
+        return URLSession.shared.dataTaskPublisher(for: safeUrl)
             .receive(on: RunLoop.main)
             .map(\.data)
             .decode(type: CityDataModel.self, decoder: JSONDecoder())

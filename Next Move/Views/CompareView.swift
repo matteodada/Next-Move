@@ -10,6 +10,7 @@ import Combine
 
 struct CompareView: View {
     
+    
     @State var comparedCityName: String = "Pick a City"
     @State var comparedCityName2: String = "Pick a City"
     
@@ -21,18 +22,19 @@ struct CompareView: View {
     @State var isPresentingModal = false
     @State var isPresentingModal2 = false
     
+    
     var body: some View {
         
         ScrollView {
             
             ZStack {
                 
-                Color.white
+                Color(.systemBackground)
                 
                 Circle()
                     .frame(width: 600, height: 700, alignment: .center)
                     .foregroundColor(.init(white: 1.0))
-                    .position(x: 400.0, y: -35.0)
+                    .position(x: 330.0, y: -35.0)
                     .shadow(radius: 50)
                 
                 VStack {
@@ -42,7 +44,6 @@ struct CompareView: View {
                         .foregroundColor(.customPurple)
                         .fontWeight(.bold)
                     
-                    
                     Text("Comparator")
                         .font(.largeTitle)
                         .foregroundColor(.customPurple)
@@ -50,7 +51,7 @@ struct CompareView: View {
                     
                     ZStack {
                         
-                        Color(.systemBackground)
+                        Color.customWP
                         
                         HStack {
                             
@@ -59,16 +60,16 @@ struct CompareView: View {
                                 Text(comparedCityName)
                                     .font(.title)
                                     .fontWeight(.semibold)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.customBW)
                                 
                             })
                             .sheet(isPresented: $isPresentingModal, content: {
-                                ModalCityChoice(viewModel: compareViewViewModel, isPresented: $isPresentingModal, cityPickedName: $comparedCityName)
+                                
+                                ModalCityChoice(viewModel: compareViewViewModel,
+                                                isPresented: $isPresentingModal,
+                                                cityPickedName: $comparedCityName)
                             })
-                            
-                            
                         }
-                        
                     }
                     .cornerRadius(15)
                     .shadow(radius: 10)
@@ -77,7 +78,7 @@ struct CompareView: View {
                     
                     ZStack {
                         
-                        Color.white
+                        Color.customWP
                         
                         HStack {
                             
@@ -86,15 +87,16 @@ struct CompareView: View {
                                 Text(comparedCityName2)
                                     .font(.title)
                                     .fontWeight(.semibold)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.customBW)
                                 
                             })
                             .sheet(isPresented: $isPresentingModal2, content: {
-                                ModalCityChoice2(viewModel: compareViewViewModel2, isPresented: $isPresentingModal2, cityPickedName2: $comparedCityName2)
+                                
+                                ModalCityChoice2(viewModel: compareViewViewModel2,
+                                                 isPresented: $isPresentingModal2,
+                                                 cityPickedName2: $comparedCityName2)
                             })
-                            
                         }
-                        
                     }
                     .cornerRadius(15)
                     .shadow(radius: 10)
@@ -114,10 +116,10 @@ struct CompareView: View {
                             
                             Color.white
                             
-                            Text(String(compareViewViewModel.scoreData?.cityScore ?? 0.0))
+                            Text(String(compareViewViewModel.cityScore))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .foregroundColor(.red)
+                                .foregroundColor(compareViewViewModel.cityScore < 60 ? .red : .green)
                             
                         }
                         .clipShape(Circle())
@@ -131,10 +133,10 @@ struct CompareView: View {
                             
                             Color.white
                             
-                            Text(String(compareViewViewModel2.scoreData?.cityScore ?? 0.0))
+                            Text(String(compareViewViewModel2.cityScore))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
-                                .foregroundColor(.green)
+                                .foregroundColor(compareViewViewModel2.cityScore < 60 ? .red : .green)
                             
                         }
                         .clipShape(Circle())
@@ -188,76 +190,79 @@ struct CompareView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            homeViewViewModel.getStartInfo()
-        })
+        .onAppear(perform: { homeViewViewModel.getStartInfo() })
     }
 }
 
 
-
 struct ModalCityChoice: View {
+    
     
     var viewModel: CompareViewViewModel
     
     @Binding var isPresented: Bool
     @Binding var cityPickedName: String
     
+    
     var body: some View {
         
-        List(viewModel.locations) { location in
+        NavigationView {
             
-            Button(action: {
-                    cityPickedName = location.name;
-                    self.isPresented = false;
-                    self.viewModel.getLocationData(url: location.url)},
-                   
-                   label: {
+            List(viewModel.locations) { location in
                 
-                Text(location.name)
-                    .font(.title)
-                
-            })
-            
+                Button(action: {
+                        cityPickedName = location.name;
+                        self.isPresented = false;
+                        self.viewModel.getLocationData(url: location.url)},
+                       
+                       label: {
+                    
+                    Text(location.name)
+                        .font(.title)
+                    
+                })
+            }
+            .padding()
+            .onAppear(perform: { viewModel.getLocations() })
+            .navigationTitle("Pick a City")
         }
-        .onAppear(perform: { viewModel.getLocations() })
-        
     }
 }
 
+
 struct ModalCityChoice2: View {
+    
     
     var viewModel: CompareViewViewModel2
     
     @Binding var isPresented: Bool
     @Binding var cityPickedName2: String
     
+    
     var body: some View {
         
-        List(viewModel.locations) { location in
+        NavigationView {
             
-            Button(action: {
-                    cityPickedName2 = location.name;
-                    self.isPresented = false;
-                    self.viewModel.getLocationData(url: location.url)},
+            List(viewModel.locations) { location in
                 
-                   label: {
-                
-                Text(location.name)
-                    .font(.title)
-                
-            })
-            
+                Button(action: {
+                        cityPickedName2 = location.name;
+                        self.isPresented = false;
+                        self.viewModel.getLocationData(url: location.url)},
+                    
+                       label: {
+                    
+                    Text(location.name)
+                        .font(.title)
+                    
+                })
+            }
+            .padding()
+            .onAppear(perform: { viewModel.getLocations() })
+            .navigationTitle("Pick a City")
         }
-        .onAppear(perform: { viewModel.getLocations() })
-        
     }
 }
-
-
-
-
-
 
 
 struct BarViewList: View {
@@ -284,6 +289,7 @@ struct BarViewList: View {
     var safetyScore2: Double
     var healthcareScore2: Double
     var educationScore2: Double
+    
 
     var body: some View {
         
@@ -383,18 +389,18 @@ struct BarViewList2: View {
             BarViewRow(title: "Outdoors",
                        progress: outdoorsScore,
                        progress2: outdoorsScore2)
-            
         }
     }
-    
 }
     
 
 struct BarViewRow: View {
     
+    
     var title: String
     var progress: Double
     var progress2: Double
+    
     
     var body: some View {
         
@@ -419,15 +425,16 @@ struct BarViewRow: View {
         .cornerRadius(20)
         .shadow(radius: 10)
         .padding(EdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20))
-    
     }
 }
 
 
 struct BarView: View {
     
+    
     var progress: Double
     var progress2: Double
+    
     
     var body: some View {
     
@@ -445,8 +452,9 @@ struct BarView: View {
                         .cornerRadius(12)
                         .shadow(radius: 10)
                     
-                    Color.customCyanite.frame(width: 50, height: CGFloat(progress * 15)).cornerRadius(12)
-                    
+                    Color.customCyanite
+                        .frame(width: 50, height: CGFloat(progress * 15))
+                        .cornerRadius(12)
                 }
                 
                 Text(String(progress))
@@ -467,8 +475,9 @@ struct BarView: View {
                         .cornerRadius(12)
                         .shadow(radius: 10)
                     
-                    Color.customCyanite.frame(width: 50, height: CGFloat(progress2 * 15)).cornerRadius(12)
-                    
+                    Color.customCyanite
+                        .frame(width: 50, height: CGFloat(progress2 * 15))
+                        .cornerRadius(12)
                 }
                 
                 Text(String(progress2))
@@ -482,8 +491,6 @@ struct BarView: View {
         }
     }
 }
-
-
 
 
 struct CompareView_Previews: PreviewProvider {

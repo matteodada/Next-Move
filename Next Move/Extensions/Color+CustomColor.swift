@@ -13,5 +13,12 @@ extension Color {
     
     static let customCyanite = Color("CustomCyanite")
  
+    static let customBW = Color("CustomBW")
+    
+    static let customWB = Color("CustomWB")
+    
+    static let customWP = Color("CustomWP")
+    
+    static let customPW = Color("CustomPW")
     
 }

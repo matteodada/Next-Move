@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
+    
     @State private var selectedIndex: Int = 1
         
     private let buttonImageNames = ["map", "house", "arrow.left.arrow.right"]
+    
     
     var body: some View {
         
@@ -30,13 +32,10 @@ struct ContentView: View {
                     CompareView()
                 
                 default:
-                    // create an error view
-                    Text("Default View")
-                    
+                    Text("Error loadind the page")
+                        .font(.largeTitle)
                 }
             }
-            
-            //Spacer()
             
             Divider()
                 .padding(.bottom, 14)
@@ -61,10 +60,6 @@ struct ContentView: View {
         }
     }
 }
-
-
-
-
 
 
 struct ContentView_Previews: PreviewProvider {

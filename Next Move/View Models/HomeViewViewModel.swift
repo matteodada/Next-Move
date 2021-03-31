@@ -10,8 +10,10 @@ import Combine
 
 class HomeViewViewModel: ObservableObject {
     
+    
     @Published var locations = [Location]()
     @Published var popularLocations = [Location]()
+    
     
     func getStartInfo() {
         
@@ -23,17 +25,10 @@ class HomeViewViewModel: ObservableObject {
             if let startInfo = try? decoder.decode(StartInfo.self, from: data) {
                 
                 locations = startInfo.locations
-
-                for location in startInfo.locations {
-
-                    if location.isPopular {
-                        popularLocations.append(location)
-                    }
-
-                }
                 
+                popularLocations = startInfo.locations.filter({$0.isPopular})
+
             }
         }
     }
-    
 }

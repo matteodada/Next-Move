@@ -9,15 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     
-    //@ObservedObject var cityDetailViewViewModel: CityDetailViewViewModel = CityDetailViewViewModel()
+    @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     
     @State private var isModalPresented = false
     
     @State var selectedLocation: String = ""
     @State var selectedImage: String = ""
     @State var selectedLocationName: String = ""
+    
     
     func assignName(location: Location) {
         
@@ -27,6 +27,7 @@ struct HomeView: View {
         
         self.isModalPresented.toggle()
     }
+    
     
     var body: some View {
         
@@ -52,7 +53,6 @@ struct HomeView: View {
                             .foregroundColor(.customPurple)
                             .padding(EdgeInsets(top: 40, leading: 20, bottom: 5, trailing: 100))
 
-                        
                         Spacer()
                         
                     }
@@ -64,7 +64,6 @@ struct HomeView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 100))
-
 
                         Spacer()
 
@@ -78,13 +77,10 @@ struct HomeView: View {
                             .foregroundColor(.customPurple)
                             .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 100))
 
-                        
                         Spacer()
                         
                     }
-                    
      
-                
                     HStack {
                         
                         Text("Popular Destinations")
@@ -94,8 +90,8 @@ struct HomeView: View {
                             .padding(EdgeInsets(top: 95, leading: 20, bottom: 5, trailing: 10))
                             .lineLimit(1)
 
-                        
                         Spacer()
+                        
                     }
                     
                     VStack {
@@ -104,27 +100,19 @@ struct HomeView: View {
                             
                             Button(action: { assignName(location: location) }, label: {
                                 
-                                ItemRow(imageName: location.imageName, cityName: location.name)
+                                ItemRow(imageName: location.imageName,
+                                        cityName: location.name)
                                 
                             })
                             
-                           
-                            
                         }
-                        
-                        
-                
                         
                     }
                     .padding(.top)
 
-                    
                     Spacer()
-                    
                 }
-                
             }
-            
         }
         .onAppear(perform: { viewModel.getStartInfo() })
         .sheet(isPresented: $isModalPresented, content: {
@@ -133,16 +121,19 @@ struct HomeView: View {
     }
 }
 
+
 struct ItemRow: View {
+        
     
     var imageName: String
     var cityName: String
+    
     
     var body: some View {
         
         ZStack {
             
-            Color(.systemBackground)
+            Color.customWP
             
             HStack {
                 
@@ -168,21 +159,16 @@ struct ItemRow: View {
                     .resizable()
                     .frame(width: 30, height: 30)
                     .padding(.trailing, 20)
-                    .foregroundColor(.customPurple)
+                    .foregroundColor(.customPW)
                 
-
             }
-            
-        }.cornerRadius(15)
+        }
+        .cornerRadius(15)
         .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
         .shadow(radius: 10)
         
-        
     }
 }
-
-
-
 
 
 struct HomeView_Previews: PreviewProvider {

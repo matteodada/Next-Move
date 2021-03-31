@@ -132,7 +132,7 @@
 				C9D570862611D2C2005A0C3E /* Next_MoveApp.swift */,
 				C9D570BC2611DEC7005A0C3E /* Services */,
 				C9D570BB2611DEB5005A0C3E /* Models */,
-				C9D570BA2611DEA8005A0C3E /* Model Views */,
+				C9D570BA2611DEA8005A0C3E /* View Models */,
 				C9D570B92611DE9D005A0C3E /* Views */,
 				C96954FE2612797E00692579 /* Extensions */,
 				C9D5708A2611D2C4005A0C3E /* Assets.xcassets */,
@@ -181,14 +181,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C9D570BA2611DEA8005A0C3E /* Model Views */ = {
+		C9D570BA2611DEA8005A0C3E /* View Models */ = {
 			isa = PBXGroup;
 			children = (
 				C923BF6226121549007577EF /* HomeViewViewModel.swift */,
 				C96507C0261336650040CCFC /* CompareViewViewModel.swift */,
 				C94FC32B261393EB00E229C7 /* CompareViewViewModel2.swift */,
+				C984D32A26128C5C00308D2B /* CityDataViewModel.swift */,
 			);
-			path = "Model Views";
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		C9D570BB2611DEB5005A0C3E /* Models */ = {
@@ -196,7 +197,6 @@
 			children = (
 				C923BF5D2612146A007577EF /* StartInfoModel.swift */,
 				C984D31D2612870900308D2B /* CityDataModel.swift */,
-				C984D32A26128C5C00308D2B /* CityDataViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -8,10 +8,13 @@
 import Foundation
 
 struct StartInfo: Decodable {
+    
     let locations: [Location]
+    
 }
 
 struct Location: Identifiable, Decodable {
+    
     let id: Int
     let name: String
     let latitude: Double
@@ -19,4 +22,5 @@ struct Location: Identifiable, Decodable {
     let url: String
     let imageName: String
     let isPopular: Bool
+    
 }

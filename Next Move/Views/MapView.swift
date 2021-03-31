@@ -10,6 +10,7 @@ import MapKit
 
 struct MapView: View {
     
+    
     @ObservedObject private var homeViewViewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var compareViewViewModel = CompareViewViewModel()
     
@@ -23,6 +24,7 @@ struct MapView: View {
         center: CLLocationCoordinate2D(latitude: 19.43, longitude: -99.13),
         span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50))
     
+    
     func assignName(location: Location) {
         
         selectedLocation = location.url
@@ -31,8 +33,8 @@ struct MapView: View {
         
         self.isModalPresented.toggle()
         
-        
     }
+    
     
     var body: some View {
         
@@ -53,19 +55,15 @@ struct MapView: View {
             }
         }
         .ignoresSafeArea()
-        .onAppear(perform: {
-            compareViewViewModel.getLocations()
-        })
+        .onAppear(perform: { compareViewViewModel.getLocations() })
         .sheet(isPresented: $isModalPresented, content: {
-            DetailView(locationUrl: $selectedLocation, imageName: $selectedImage, locationName: $selectedLocationName)
+            
+            DetailView(locationUrl: $selectedLocation,
+                       imageName: $selectedImage,
+                       locationName: $selectedLocationName)
         })
-        
     }
 }
-
-
-
-
 
 
 struct MapView_Previews: PreviewProvider {
