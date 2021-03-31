@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-class WebService {
+struct WebService {
     
-    func getData(url: String) -> AnyPublisher<CityDataModel, Error> {
+    static func getData(url: String) -> AnyPublisher<CityDataModel, Error> {
         
         var components = URLComponents()
         components.scheme = "https"

@@ -11,7 +11,6 @@ import MapKit
 struct MapView: View {
     
     
-    @ObservedObject private var homeViewViewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var compareViewViewModel = CompareViewViewModel()
     
     @State var isModalPresented = false

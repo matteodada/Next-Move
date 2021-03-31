@@ -36,8 +36,6 @@ class CompareViewViewModel2: ObservableObject {
     @Published var toleranceScore: Double = 0.0
     @Published var outdoorsScore: Double = 0.0
     
-    let webService = WebService()
-    
     var cancellable: AnyCancellable?
     
     
@@ -58,7 +56,7 @@ class CompareViewViewModel2: ObservableObject {
     
     func getLocationData(url: String) {
         
-        cancellable = webService.getData(url: url).sink(receiveCompletion: { _ in
+        cancellable = WebService.getData(url: url).sink(receiveCompletion: { _ in
         
         }, receiveValue: { cityDataModel in
             
