@@ -17,6 +17,8 @@
 		C984D31E2612870900308D2B /* CityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C984D31D2612870900308D2B /* CityDataModel.swift */; };
 		C984D32626128AF300308D2B /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C984D32526128AF300308D2B /* WebService.swift */; };
 		C984D32B26128C5C00308D2B /* CityDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C984D32A26128C5C00308D2B /* CityDataViewModel.swift */; };
+		C99E2F512614D4A2000EB610 /* ExperimentCompareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99E2F502614D4A2000EB610 /* ExperimentCompareViewModel.swift */; };
+		C99E2F562614D536000EB610 /* ExperimentCompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99E2F552614D536000EB610 /* ExperimentCompareView.swift */; };
 		C9D570872611D2C2005A0C3E /* Next_MoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D570862611D2C2005A0C3E /* Next_MoveApp.swift */; };
 		C9D570892611D2C2005A0C3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D570882611D2C2005A0C3E /* ContentView.swift */; };
 		C9D5708B2611D2C4005A0C3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D5708A2611D2C4005A0C3E /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		C984D31D2612870900308D2B /* CityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataModel.swift; sourceTree = "<group>"; };
 		C984D32526128AF300308D2B /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		C984D32A26128C5C00308D2B /* CityDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataViewModel.swift; sourceTree = "<group>"; };
+		C99E2F502614D4A2000EB610 /* ExperimentCompareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentCompareViewModel.swift; sourceTree = "<group>"; };
+		C99E2F552614D536000EB610 /* ExperimentCompareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentCompareView.swift; sourceTree = "<group>"; };
 		C9D570832611D2C2005A0C3E /* Next Move.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Next Move.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D570862611D2C2005A0C3E /* Next_MoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Next_MoveApp.swift; sourceTree = "<group>"; };
 		C9D570882611D2C2005A0C3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				C9D570B42611DE1D005A0C3E /* MapView.swift */,
 				C9D570BD2611DF14005A0C3E /* CompareView.swift */,
 				C94FC3262613633400E229C7 /* DetailView.swift */,
+				C99E2F552614D536000EB610 /* ExperimentCompareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				C96507C0261336650040CCFC /* CompareViewViewModel.swift */,
 				C94FC32B261393EB00E229C7 /* CompareViewViewModel2.swift */,
 				C984D32A26128C5C00308D2B /* CityDataViewModel.swift */,
+				C99E2F502614D4A2000EB610 /* ExperimentCompareViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -343,10 +349,12 @@
 				C984D32B26128C5C00308D2B /* CityDataViewModel.swift in Sources */,
 				C96954FA2612796100692579 /* Color+CustomColor.swift in Sources */,
 				C96507C1261336650040CCFC /* CompareViewViewModel.swift in Sources */,
+				C99E2F512614D4A2000EB610 /* ExperimentCompareViewModel.swift in Sources */,
 				C9D570892611D2C2005A0C3E /* ContentView.swift in Sources */,
 				C94FC32C261393EB00E229C7 /* CompareViewViewModel2.swift in Sources */,
 				C923BF6326121549007577EF /* HomeViewViewModel.swift in Sources */,
 				C984D31E2612870900308D2B /* CityDataModel.swift in Sources */,
+				C99E2F562614D536000EB610 /* ExperimentCompareView.swift in Sources */,
 				C9D570B52611DE1D005A0C3E /* MapView.swift in Sources */,
 				C9D570BE2611DF14005A0C3E /* CompareView.swift in Sources */,
 				C9D570C62611DF2B005A0C3E /* HomeView.swift in Sources */,
