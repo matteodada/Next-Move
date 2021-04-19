@@ -10,6 +10,8 @@ import Combine
 
 class ExperimentCompareViewModel: ObservableObject {
     
+    var categories = ["housing", "culture", "cost of living", "commute"]
+    
     @Published var score1: [String : Double] = ["housing": 0.0,
                                                 "culture": 0.0,
                                                 "cost of living": 0.0,
@@ -19,6 +21,9 @@ class ExperimentCompareViewModel: ObservableObject {
                                                 "culture": 0.0,
                                                 "cost of living": 0.0,
                                                 "commute": 0.0]
+    
+    @Published var cityScore1: Double = 0.0
+    @Published var cityScore2: Double = 0.0
     
     var cancellable: AnyCancellable?
     
@@ -35,7 +40,12 @@ class ExperimentCompareViewModel: ObservableObject {
             
             let newData = CityDataViewModel(cityData: cityDataModel)
             
-                self.score1["housing"] = newData.housingScore
+            self.cityScore1 = newData.cityScore
+            
+            self.score1["housing"] = newData.housingScore
+            self.score1["cost of living"] = newData.costOfLivingScore
+            self.score1["culture"] = newData.cultureScore
+            self.score1["commute"] = newData.commuteScore
             
         })
     }
@@ -50,7 +60,13 @@ class ExperimentCompareViewModel: ObservableObject {
             
             let newData = CityDataViewModel(cityData: cityDataModel)
             
-                self.score2["housing"] = newData.housingScore
+            self.cityScore2 = newData.cityScore
+            
+            self.score2["housing"] = newData.housingScore
+            self.score2["cost of living"] = newData.costOfLivingScore
+            self.score2["culture"] = newData.cultureScore
+            self.score2["commute"] = newData.commuteScore
+
         })
         
         
