@@ -11,8 +11,19 @@ struct ExperimentCompareView: View {
     
     @ObservedObject var viewModel = ExperimentCompareViewModel()
     
-    var body: some View {
+    @State var comparedCity1: String = "Pick a City"
+    @State var comparedCity2: String = "Pick a City"
+    
+    @State var isPresentingModal1 = false
+    @State var isPresentingModal2 = false
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.init(Color.customPurple)]
         
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.init(Color.customPurple)]
+    }
+    
+    var body: some View {
         
         ScrollView {
             
@@ -38,6 +49,64 @@ struct ExperimentCompareView: View {
                         .foregroundColor(.customPurple)
                         .fontWeight(.bold)
                     
+                    
+                    ZStack {
+                        
+                        Color.customWP
+                        
+                        HStack {
+                            
+                            Button(action: { self.isPresentingModal1.toggle()}, label: {
+                                
+                                Text(comparedCity1)
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.customBW)
+                                
+                            })
+                            .sheet(isPresented: $isPresentingModal1, content: {
+                                
+                                PickerModal(viewModel: viewModel,
+                                            isPresented: $isPresentingModal1,
+                                            cityPickedName: $comparedCity1,
+                                            isCity1Selected: true)
+                            })
+                        }
+                    }
+                    .cornerRadius(15)
+                    .shadow(radius: 10)
+                    .frame(width: 250, height: 50)
+                    .padding(EdgeInsets(top: 30.0, leading: 25.0, bottom: 15.0, trailing: 100))
+                    
+                    
+                    ZStack {
+
+                        Color.customWP
+
+                        HStack {
+
+                            Button(action: { self.isPresentingModal2.toggle()}, label: {
+
+                                Text(comparedCity2)
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.customBW)
+
+                            })
+                            .sheet(isPresented: $isPresentingModal2, content: {
+
+                                PickerModal(viewModel: viewModel,
+                                            isPresented: $isPresentingModal2,
+                                            cityPickedName: $comparedCity2,
+                                            isCity1Selected: false)
+                            })
+                        }
+                    }
+                    .cornerRadius(15)
+                    .shadow(radius: 10)
+                    .frame(width: 250, height: 50)
+                    .padding(EdgeInsets(top: 15.0, leading: 100, bottom: 30.0, trailing: 25.0))
+                    
                     ExperimentCityScoreView(cityScore1: viewModel.cityScore1,
                                             cityScore2: viewModel.cityScore2)
                         .padding(.top)
@@ -53,11 +122,58 @@ struct ExperimentCompareView: View {
             }
         }
         .onAppear(perform: {
-            viewModel.getScore(url: "paris");
-            viewModel.getScore2(url: "london")
+            viewModel.getLocations()
         })
     }
 }
+
+
+struct PickerModal: View {
+    
+    var viewModel: ExperimentCompareViewModel
+    
+    @Binding var isPresented: Bool
+    @Binding var cityPickedName: String
+    
+    var isCity1Selected: Bool
+    
+    var body: some View {
+        
+        NavigationView {
+            
+            List(viewModel.locations) { location in
+                
+                Button(action: {
+                    
+                    cityPickedName = location.name;
+                    self.isPresented = false;
+                    
+                    if isCity1Selected {
+                        self.viewModel.getScore(url: location.url)
+                    } else {
+                        self.viewModel.getScore2(url: location.url)
+                    }
+                },
+                       
+                       label: {
+                    
+                    Text(location.name)
+                        .font(.title)
+                    
+                })
+                
+            }
+            .padding()
+            .onAppear(perform: { viewModel.getLocations() })
+            .navigationTitle("Pick a City")
+        }
+        
+    }
+}
+
+
+
+
 
 struct ExperimentCityScoreView: View {
     

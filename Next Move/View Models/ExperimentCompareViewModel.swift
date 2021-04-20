@@ -10,6 +10,8 @@ import Combine
 
 class ExperimentCompareViewModel: ObservableObject {
     
+    var locations = [Location]()
+    
     var categories = ["housing", "culture", "cost of living", "commute"]
     
     @Published var score1: [String : Double] = ["housing": 0.0,
@@ -28,6 +30,22 @@ class ExperimentCompareViewModel: ObservableObject {
     var cancellable: AnyCancellable?
     
     var cancellable2: AnyCancellable?
+    
+    
+    func getLocations() {
+        
+            if let url = Bundle.main.url(forResource: "startInfo", withExtension: "json"),
+               let data = try? Data(contentsOf: url) {
+                
+                let decoder = JSONDecoder()
+                
+                if let startInfo = try? decoder.decode(StartInfo.self, from: data) {
+                    
+                    locations = startInfo.locations
+                }
+            }
+    }
+
     
     func getScore(url: String) {
         
