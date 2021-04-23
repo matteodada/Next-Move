@@ -11,7 +11,7 @@ import MapKit
 struct MapView: View {
     
     
-    @ObservedObject var compareViewViewModel = CompareViewViewModel()
+    @ObservedObject var compareViewModel = CompareViewModel()
     
     @State var isModalPresented = false
     
@@ -37,7 +37,7 @@ struct MapView: View {
     
     var body: some View {
         
-        Map(coordinateRegion: $coordinateRegion, annotationItems: compareViewViewModel.locations) { location in
+        Map(coordinateRegion: $coordinateRegion, annotationItems: compareViewModel.locations) { location in
             MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.latitude,
                                                              longitude: location.longitude)) {
                 
@@ -54,7 +54,7 @@ struct MapView: View {
             }
         }
         .ignoresSafeArea()
-        .onAppear(perform: { compareViewViewModel.getLocations() })
+        .onAppear(perform: { compareViewModel.getLocations() })
         .sheet(isPresented: $isModalPresented, content: {
             
             DetailView(locationUrl: $selectedLocation,

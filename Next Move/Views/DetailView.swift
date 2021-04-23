@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailView: View {
     
     
-    @ObservedObject private var viewModel = CompareViewViewModel()
+    @ObservedObject private var viewModel = CompareViewModel()
     
     @Binding var locationUrl: String
     @Binding var imageName: String
@@ -39,31 +39,19 @@ struct DetailView: View {
                     
                 Spacer()
                 
-                CityScoreView(cityScore: viewModel.scoreData?.cityScore  ?? 0.0)
+                CityScoreView(cityScore: viewModel.cityScore1)
                 
-                ScoreViewList(housingScore: viewModel.housingScore,
-                              costOfLivingScore: viewModel.costOflivingScore,
-                              startUpsScore: viewModel.startUpsScore,
-                              ventureCapitalScore: viewModel.ventureCapitalScore,
-                              travelConnectivityScore: viewModel.travelConnectivityScore,
-                              commuteScore: viewModel.commuteScore,
-                              businessFreedomScore: viewModel.businessFreedomScore,
-                              safetyScore: viewModel.safetyScore,
-                              healthcareScore: viewModel.healthcareScore,
-                              educationScore: viewModel.educationScore)
+                ForEach(viewModel.categories, id: \.self) { categorie in
+                    ScoreView(categorieName: categorie.capitalized, score: viewModel.score1[categorie] ?? 0.0)
+                }
                 
-                ScoreViewList2(environmentalQualityScore: viewModel.environmentalQualityScore,
-                               economyScore: viewModel.economyScore,
-                               taxationScore: viewModel.taxationScore,
-                               internetAccessScore: viewModel.internetAccessScore,
-                               cultureScore: viewModel.cultureScore,
-                               toleranceScore: viewModel.toleranceScore,
-                               outdoorsScore: viewModel.outdoorsScore)
+                
+                
             }
         }
         .ignoresSafeArea()
         .onAppear(perform: { viewModel.getLocations() })
-        .onAppear(perform: { viewModel.getLocationData(url: locationUrl) })
+        .onAppear(perform: { viewModel.getScore(url: locationUrl) })
     }
 }
 
@@ -187,65 +175,4 @@ struct ScoreView: View {
     }
 }
 
-
-struct ScoreViewList: View {
-    
-    
-    var housingScore: Double
-    var costOfLivingScore: Double
-    var startUpsScore: Double
-    var ventureCapitalScore: Double
-    var travelConnectivityScore: Double
-    var commuteScore: Double
-    var businessFreedomScore: Double
-    var safetyScore: Double
-    var healthcareScore: Double
-    var educationScore: Double
-    
-    
-    var body: some View {
-        
-        VStack {
-            
-            ScoreView(categorieName: "Housing", score: housingScore)
-            ScoreView(categorieName: "Cost Of Living", score: costOfLivingScore)
-            ScoreView(categorieName: "StartUps", score: startUpsScore)
-            ScoreView(categorieName: "Venture Capital", score: ventureCapitalScore)
-            ScoreView(categorieName: "Travel Connectivity", score: travelConnectivityScore)
-            ScoreView(categorieName: "Commute", score: commuteScore)
-            ScoreView(categorieName: "Business Freedom", score: businessFreedomScore)
-            ScoreView(categorieName: "Safety", score: safetyScore)
-            ScoreView(categorieName: "Healthcare", score: healthcareScore)
-            ScoreView(categorieName: "Education", score: educationScore)
-        }
-    }
-}
-
-
-struct ScoreViewList2: View {
-    
-    
-    var environmentalQualityScore: Double
-    var economyScore: Double
-    var taxationScore: Double
-    var internetAccessScore: Double
-    var cultureScore: Double
-    var toleranceScore: Double
-    var outdoorsScore: Double
-    
-    
-    var body: some View {
-        
-        VStack {
-            
-            ScoreView(categorieName: "Environmental Quality", score: environmentalQualityScore)
-            ScoreView(categorieName: "Economy", score: economyScore)
-            ScoreView(categorieName: "Taxation", score: taxationScore)
-            ScoreView(categorieName: "Internet Access", score: internetAccessScore)
-            ScoreView(categorieName: "Leisure & Culture", score: cultureScore)
-            ScoreView(categorieName: "Tolerance", score: toleranceScore)
-            ScoreView(categorieName: "Outdoors", score: outdoorsScore)
-        }
-    }
-}
 
