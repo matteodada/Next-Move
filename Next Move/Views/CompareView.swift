@@ -17,11 +17,6 @@ struct CompareView: View {
     @State var isPresentingModal1 = false
     @State var isPresentingModal2 = false
     
-    init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.init(Color.customPurple)]
-        
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.init(Color.customPurple)]
-    }
     
     var body: some View {
         
@@ -135,43 +130,58 @@ struct PickerModal: View {
     @Binding var isPresented: Bool
     @Binding var cityPickedName: String
     
+    @State var searchText: String = ""
+    
     var isCity1Selected: Bool
     
     var body: some View {
         
-        NavigationView {
             
-            List(viewModel.locations) { location in
+            VStack {
                 
-                Button(action: {
+                HStack {
                     
-                    cityPickedName = location.name;
-                    self.isPresented = false;
+                    Text("Pick a City")
+                        .font(.system(size: 40, weight: .black, design: .rounded))
+                        .foregroundColor(.customPurple)
+                        .padding(.leading)
+                        .padding(.top)
                     
-                    if isCity1Selected {
-                        self.viewModel.getScore(url: location.url)
-                    } else {
-                        self.viewModel.getScore2(url: location.url)
+                    Spacer()
+                }
+                
+                SearchBar(text: $searchText)
+                    
+                
+                List(viewModel.locations.filter({searchText.isEmpty ? true : $0.name.contains(searchText) })) { location in
+                        
+                        Button(action: {
+                            
+                            cityPickedName = location.name;
+                            self.isPresented = false;
+                            
+                            if isCity1Selected {
+                                self.viewModel.getScore(url: location.url)
+                            } else {
+                                self.viewModel.getScore2(url: location.url)
+                            }
+                        },
+                               
+                               label: {
+                            
+                            Text(location.name)
+                                .font(.title)
+                            
+                        })
+                        
                     }
-                },
-                       
-                       label: {
-                    
-                    Text(location.name)
-                        .font(.title)
-                    
-                })
-                
+                    .padding()
+    
             }
-            .padding()
             .onAppear(perform: { viewModel.getLocations() })
-            .navigationTitle("Pick a City").font(.system(size: 40, weight: .black, design: .rounded))
-        }
-        
+           
     }
 }
-
-
 
 
 
